@@ -8,6 +8,8 @@ import useHandleConfig from "@/hooks/useConfig";
 import useHandleNotification from "@/hooks/useNotification";
 import useHandleService from "@/hooks/useService";
 import { toName } from "@/libs/utils";
+import Sidebar from "./components/menu/menu"
+import Perfil from "./components/menu/perfilbtn";
 
 export default function Index() {
   const dispatch = useDispatch();
@@ -70,8 +72,14 @@ export default function Index() {
 
   return (
     <div className={styles.home}>
+      
+    <div
+    className={styles.menu}
+    ><Sidebar/></div>
       <Map2 service={service} latitude={latitude} longitude={longitude} />
-
+      <div className={styles.perfil}>
+      <Perfil/>
+    </div>
       <div className={styles.form}>
         <CardHome
           handleService={handleService}
@@ -83,6 +91,7 @@ export default function Index() {
           user={user && user.name && toName(user.name)}
         />
       </div>
+      
     </div>
   );
 }

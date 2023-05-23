@@ -132,6 +132,7 @@ const Entry = ({ onConfirm, signInWithGoogle }) => {
     <div className={styles.entry}>
       <div className={styles.head}>
         <div className={cn("h4", styles.title)}>Seja bem vindo!</div>
+        <div className={styles.label}>Precisamos te conhecer melhor </div>
 
       </div>
       <div className={styles.body}>
@@ -214,9 +215,17 @@ const Entry = ({ onConfirm, signInWithGoogle }) => {
            <div className={styles.separator}></div>
           <h1>Ou</h1>
           <div className={styles.separator2}></div>
+          <div className={styles.google}>   <GoogleAuth /> </div>
           </div>
 
-        <GoogleAuth />
+          <div className={styles.info1}>
+            Ja possui conta?{" "}
+            <a className={styles.link} 
+                href="../login">
+                  Entrar
+                </a>
+          </div>
+     
       </div>
     </div>
   );

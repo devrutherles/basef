@@ -3,14 +3,14 @@
 .row
     position: relative
     display: flex
-    height: 100%
     background: $n1
-
+    height: 100vh
+    width: 70vw
     +dark
         background: $n7
 
 .col
-    padding: 96px 24px
+    padding: 50px 24px
     +m
         padding-bottom: 32px
     &:first-child
@@ -29,14 +29,12 @@
         justify-content: center
         align-items: center
         flex-grow: 1
-        width: 35vw
-
-        +m 
+        width: 55vw
+        +m
             width: 100vw
 
-
 .wrap
-    max-width: 350px
+    max-width: 60vw
     display: flex
     flex-direction: column
     align-items: center
@@ -65,7 +63,6 @@
             position: absolute
             top: 0
             left: 0
-
             width: 24px
             height: 24px
             background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3E%3Cpath fill-rule='evenodd' d='M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10zm-2 0a8 8 0 1 1-16 0 8 8 0 0 1 8-8 7.98 7.98 0 0 1 5.942 2.644L11 13.586l-2.793-2.793a1 1 0 0 0-1.414 1.414L9.586 15a2 2 0 0 0 2.828 0l6.687-6.687C19.676 9.416 20 10.67 20 12z' fill='%2383bf6e'/%3E%3C/svg%3E") no-repeat 50% 50% / 100% auto
@@ -91,65 +88,35 @@
             width: 40vw
 
 
-.info
-    position: relative
-    top: 47vh
-    left: 6vw
-    width: 20vw
-    margin-top: 3vh
-    +caption1
-    color: $shades1
-    +t
-        padding-left: 80px
-    +m
-        top: 97.5%
-        display: flex
-        right: 30%
-
-    a
-        font-weight: 700
-        color: $n7
-        transition: color .2s
-        +dark
-            color: $n1
-        &:hover
-            color: $p1
-            +dark
-                color: $p1
-
 .wrapper
-    max-width: 304px
+    max-width: 100%
     display: flex
-    right: 10vw
     position: relative
-    bottom: 10vh
+    height: 100%
     +m
         max-width: 100%
         max-height: 100%
 
-
 .title
-    margin-bottom: 32px
+    margin-bottom: 100px
     position: relative
-    bottom: 0vh
+
+.link
+    margin-left: 4px
 
 .btns
-    margin-top: 15px
     justify-content: center
     display: flex
-    margin: 0 -4px
+    position: relative
+    height: 1vh
 
-    .button
-        flex: 0 0 calc(50% - 8px)
-        width: calc(50% - 8px)
-        margin: 0 4px
-        padding: 0 16px
-        top: 9vh
-        width: 10vw
-        position: relative
-
-        img
-            margin-right: 10px
+.button
+    flex: 0 0 calc(50% - 8px)
+    margin: 0 4px
+    width: 10vw
+    position: relative
+    img
+        margin-right: 10px
         +m
             flex-grow: 0
             flex-shrink: 0
@@ -165,8 +132,9 @@
             top: 7vh
 
 
-.link
-    font-size: 12px
+
+.entry
     position: relative
-    margin-left: 4px
+    width: 100vw
+    height: 100vh
 

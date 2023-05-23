@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import cn from "classnames";
-import styles from "./SignIn.module.sass";
+import styles from "./SignUp.module.sass";
 import { loginUsingGoogle } from "../../service/auth";
 
 const Google = () => {

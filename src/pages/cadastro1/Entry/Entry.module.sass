@@ -1,66 +1,49 @@
 @import ../../../styles/helpers
 
 .head
-    top: 10vh
-    position: absolute
+    margin-bottom: 0px
+    padding-bottom: 0px
     border-bottom: 2px solid $n3
-    z-index: 999999
-    width: 25vw
-
     +dark
         border-color: $n6
 
-.info
-    margin-bottom: 0px
-    +body2-s
-
 .btns
     display: flex
-    margin: 0 -4px
-    left: 1vw
-    .button
-        flex: 0 0 calc(50% - 8px)
-        width: calc(50% - 8px)
-        margin: 0 4px
-        padding: 0 16px
+.button
+    flex: 0 0 calc(50% - 8px)
+    width: 100%
 
-        img
-            margin-right: 10px
+
+    img
+        margin-right: 10px
 
 .body
     .button
         width: 100%
         position: relative
-        top: 2vh
-        
+
 .field
     margin-bottom: 0px
     position: relative
-    top: 16vh
+    bottom: 5vh
     +m
         margin-bottom: 10px
-
 .note
-    margin-top: 32px
+    margin-top: 2px
     +body2-s
     color: $shades1
 
 .cap
-    margin-bottom: 20px
-    margin-top: 20px
     position: relative
-    top: 28vh
-    left: 0.5vw
 
 .subtitle2
-    margin-top: 0px
-    margin-bottom: 7.5vh
+    margin-top: 40px
+    margin-bottom: 10vh
     align-items: center
     justify-content: center
     display: flex
     width: 25vw
     position: relative
-    top: 17vh
 
     +m
         display: flex
@@ -74,22 +57,29 @@
         margin-inline: 5px
 
 .separator
-    background: $n 
+    background: $n
     height: 0.1vh
     position: relative
     opacity: 0.5
     width: 35vw
 
 .separator2
-    background: $n 
+    background: $n
     height: 0.1vh
     position: relative
     opacity: 0.5
     width: 35vw
 
-.error
+.separator3
+    background: $n
+    height: 0.1vh
     position: relative
-    top: 3vh
+    opacity: 0.5
+    width: 25vw
+
+.error
+    margin-top: 0px
+    margin-bottom: 0px
     color: $p3
     +body2-s
 
@@ -100,6 +90,36 @@
     +m
         margin-bottom: 1vh
         position: relative
- 
-        
 
+.info1
+    position: relative
+    +caption1
+    color: $shades1
+    display: flex
+    flex-direction: row
+    align-items: center
+    gap: 1rem
+    font-size: 20px
+    height: 5vh
+    a
+        font-weight: 900
+        color: $n7
+        transition: color .2s
+        +dark
+            color: $n1
+        &:hover
+            color: $p1
+            +dark
+                color: $p1
+    +t
+        padding-left: 80px
+    +m
+        top: 97.5%
+        display: flex
+        right: 30%
+
+
+.google
+    position: absolute
+    display: flex
+    top: 5vh
