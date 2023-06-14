@@ -1,243 +1,165 @@
-import React, { useRef, useState } from "react";
-import CardService from "../CardService";
-import style from "./Card.module.sass";
-import Image from "next/image";
-import Icon from "../Icons";
-import useGetRoute from "@/utils/getRouter";
-import { setService } from "@/context/serviceSlice";
-import List from "../List";
-import { CancelOutlined, LocationDisabled } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
-import CardForm from "../CardForm";
-import Servico from "../Servico";
-import { debounce } from "lodash";
-import cn from "classnames";
-
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import Cards from '../Cards'
+import styles from "./CardHome.module.sass";
+import CadTop from "./CadTop";
 const avatar = require("../../images/avatar.jpg");
+import LaunchIcon from '@mui/icons-material/Launch';
+import CardService from "../CardService";
+import List from "../List";
+import Servico from "../Servico";
+import Tables from "@/components/Tables";
+import ButtonNavigation from '../BottonNavigation'
 
-const CardHome = ({
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import Icon from "../Icon";
+import { CancelOutlined, CloseFullscreen, CloseRounded, LocationDisabledOutlined } from "@mui/icons-material";
+import OriginDestination from "./OriginDestination";
+import CancelSharpIcon from "@mui/icons-material/CancelSharp";
+import { Button, IconButton } from "@mui/material";
+import Map2 from "@/pages/home/components/Map2/index copy";
+import CardForm from "../CardForm";
+import Imput from './input'
+import cn from 'classnames'
+import Paper from '@mui/material/Paper';
+//import Service from '../CardService/Service'
+import CardNotification from '../CardNotification'
+import Service from '../Services'
+import { fontSize } from "@mui/system";
+
+
+export default function Index({
   handleService,
   service,
-  step,
   config,
+  app,
   user,
   latitude,
   longitude,
-}) => {
+  myLocation,
+  setNewLocation,
+  height,
+  formHeight,
+  handleOpen,
+  handleClose,
+  handleApp
+
+}) {
   const [suggestionsArray, setSuggestionsArray] = useState({
     suggestions: [],
     isOpen: false,
     input: "",
   });
 
-  const locationRef = useRef(null);
-  const destinationRef = useRef(null);
 
-  const [locationInput, setLocationInput] = useState({
-    origin: "",
-    destination: "",
-    valueOrigin: "",
-    valueDestination: "",
-    inputType: "",
-  });
+  const divRef = useRef()
 
-  const handleRoute = debounce(async (data, input) => {
-    if (!data || data.length < 1) {
-      setSuggestionsArray({
-        ...suggestionsArray,
-        isOpen: false,
-        suggestions: [],
-      });
-      return;
+  const { isOpen, step } = app
+
+
+  useEffect(() => {
+
+    if (divRef.current) {
+
+      const { clientWidth, clientHeight } = divRef.current;
+
+      handleApp({ cardHeight: clientHeight })
     }
+  }, [divRef, isOpen]);
 
-    if (data.length > 3) {
-      const routeSuggestions = await useGetRoute(data, input);
-      setSuggestionsArray({
-        ...suggestionsArray,
-        isOpen: true,
-        suggestions: routeSuggestions,
-        input: input,
-      });
-    }
-  }, 300);
 
-  const handleSetOrigem = async (data) => {
-    if (locationInput.inputType === "origin") {
-      setLocationInput({
-        ...locationInput,
-        valueOrigin: data.place_name,
-      });
 
-      handleService({
-        originPlace: data.place_name,
-        origin: [data.center[0], data.center[1]],
+  const Item = styled(Paper)(({ theme }) => ({
 
-        makers: [
-          {
-            coordinates: [data.center[0], data.center[1]],
-            place: data.place_name,
-            type: "origin",
-          },
-        ],
-      });
 
-      setSuggestionsArray({
-        ...suggestionsArray,
-        suggestions: [],
-        isOpen: false,
-      });
+    color: '#ffff',
+    height: 'auto',
 
-      destinationRef.current.focus();
-    } else {
-      setLocationInput({
-        ...locationInput,
-        valueDestination: data.place_name,
-      });
-
-      setSuggestionsArray({
-        ...suggestionsArray,
-        suggestions: [],
-        isOpen: false,
-      });
-
-      handleService({
-        destinationPlace: data.place_name,
-        destination: [data.center[0], data.center[1]],
-      });
-    }
-  };
-
-  const handleInputChange = (locationType, value) => {
-    if (locationType === "origin") {
-      setLocationInput({
-        ...locationInput,
-        valueOrigin: value,
-        inputType: locationType,
-      });
-      handleRoute(value, locationType);
-    } else {
-      setLocationInput({
-        ...locationInput,
-        valueDestination: value,
-        inputType: locationType,
-      });
-      handleRoute(value, locationType);
-    }
-  };
-
-  const del = (input) => {
-    if (input === "origin") {
-      setLocationInput({
-        ...locationInput,
-        valueOrigin: "",
-      });
-    } else {
-      setLocationInput({
-        ...locationInput,
-        valueDestination: "",
-      });
-    }
-  };
+  }));
 
   return (
-    <div
-      className={cn("container", {
-        "card-open": suggestionsArray.isOpen,
-        "card-closed": !suggestionsArray.isOpen,
-      })}
-    >
-      <div className={style["card-container"]}>
-        {step === 1 && (
-          <div className={style["input--origem"]}>
-            <div className={style["address--conteiner-origem"]}>
-              <Icon
-                className={style["svgorigin--destino"]}
-                name="originDestination"
-              />
-              <div className={style["address"]}>
-                <div
-                  style={{
-                    flexDirection: "row",
-                    display: "flex",
-                    width: "100%",
-                  }}
-                >
-                  <input
-                    className={style["input--address"]}
-                    placeholder="De Onde?"
-                    onChange={(e) =>
-                      handleInputChange("origin", e.target.value)
-                    }
-                    value={locationInput.valueOrigin}
-                    ref={locationRef}
-                  />
-                  <IconButton onClick={() => del("origin")}>
-                    <CancelOutlined />
-                  </IconButton>
-                </div>
-                <div
-                  style={{
-                    borderTopColor: "gray",
-                    borderTopWidth: "1px",
-                    borderTopStyle: "solid",
-                    width: "100%",
-                    marginBlock: "10px",
-                    height: "1px",
-                  }}
-                />
-                <div
-                  style={{
-                    flexDirection: "row",
-                    display: "flex",
-                    width: "100%",
-                  }}
-                >
-                  <input
-                    className={style["input--address"]}
-                    placeholder="Para onde?"
-                    ref={destinationRef}
-                    onChange={(e) =>
-                      handleInputChange("destination", e.target.value)
-                    }
-                    value={locationInput.valueDestination}
-                  />
+    <>
 
-                  <IconButton onClick={() => del("destination")}>
-                    <CancelOutlined />
-                  </IconButton>
-                </div>
-              </div>
-            </div>
+
+      <Item elevation={3} className={styles.notifications} >
+        <div className={styles.block}>
+
+          <div className={styles.header_card2}>
+            <span>
+              Para ter uma melhor experiencia
+
+            </span>
+
+            <p>
+              Por favor ative a permissção da localização
+
+            </p>
+
           </div>
+
+
+          <Button size="medium" sx={{ borderRadius: 20, backgroundColor: '#fff', color: '#3070f7', fontSize: 13 }} variant="contained"  >
+            Permitir
+          </Button>
+
+
+          <div className={styles.content_close}>
+
+
+            <IconButton>
+              <CloseRounded />
+            </IconButton>
+
+
+          </div>
+        </div>
+
+      </Item>
+
+      <Item elevation={3} ref={divRef} data-step={2} data-isopen={true} className={cn(styles.card)}>
+
+
+
+
+
+
+
+
+
+
+        {1 == 1 && (
+          <OriginDestination
+            step={step}
+            service={service}
+            handleService={handleService}
+            handleOpen={handleOpen}
+            handleClose={handleClose}
+            app={app}
+
+
+          />
+
+
+        )}
+        {2 == 3 && true && (<div className={styles.card_services}> <Service handleApp={handleApp} app={app} config={config} service={service} handleService={handleService} /> </div>
         )}
 
-        {step === 2 &&
-          config?.map((config, index) => (
-            <div key={index} style={{ padding: "3%", width: "100%" }}>
-              <CardService config={config} />
-            </div>
-          ))}
 
-        {step === 3 && (
-          <div style={{ padding: "3%", width: "100%" }}>
-            <Servico config={config} />
-          </div>
-        )}
 
-        {suggestionsArray.isOpen &&
-          suggestionsArray.suggestions.map((suggestion, index) => (
-            <List
-              key={index}
-              handleSetOrigem={handleSetOrigem}
-              suggestion={suggestion}
-              index={index}
-              input={suggestionsArray.input}
-            />
-          ))}
-      </div>
-    </div>
+
+
+
+
+
+
+
+        <div className={styles.tab}>
+
+          <ButtonNavigation />
+        </div>
+
+
+      </Item>
+
+    </>
   );
-};
-
-export default CardHome;
+}
