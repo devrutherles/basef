@@ -21,11 +21,33 @@
     @media only screen and (max-width: "474px")
         @content
 
+=xl
+    @media only screen and (min-width: "1600px")
+        @content
+=lg
+    @media only screen and (max-width: "1599px")
+        @content
+=ml
+    @media only screen and (max-width: "1200px")
+        @content
+=md
+    @media only screen and (max-width: "768px")
+        @content
+=sm
+    @media only screen and (max-width: "576px")
+        @content
+=xs
+    @media only screen and (max-width: "500px")
+        @content
+
 // fonts
 =inter
     font-family: 'Roboto', sans-serif
 
-// colors
+$primary: #1a73e8
+$gray: #afafaf
+$darkGray: #222b45
+$lightGray: #ececec
 $p1: #3070F6
 $p2: #83BF6E
 $p3: #FF6A55
@@ -46,8 +68,7 @@ $n6: #272B30
 $n7: #1A1D1F
 $n8: #111315
 
-
-$ligth_gray:#f7f8fa
+$ligth_gray: #f7f8fa
 $gray: #8C95AA
 
 
@@ -56,7 +77,18 @@ $shades2: #6F767E
 $shades3: rgba(#6F767E, .4)
 $shades4: rgba(#111315, .5)
 
-$shadow_1:  0 0 1px 0 rgba(24, 94, 224, 0.15), 0 6px 12px 0 rgba(24, 94, 224, 0.15)
+//fonts
+
+$h1: 30px
+$h2: 27px
+$h3: 24px
+$h4: 21px
+$h5: 18px
+$h6: 15px
+$h7: 12px
+
+
+$shadow_1: 0 0 1px 0 rgba(24, 94, 224, 0.15), 0 6px 12px 0 rgba(24, 94, 224, 0.15)
 
 // typography
 =title1-s
@@ -74,6 +106,20 @@ $shadow_1:  0 0 1px 0 rgba(24, 94, 224, 0.15), 0 6px 12px 0 rgba(24, 94, 224, 0.
     letter-spacing: -.02em
     +m
         font-size: 18px
+
+=title1-g
+    font-size: 28px
+    font-weight: 500
+    line-height: (24/20)
+    letter-spacing: -.02em
+    font-family: Roboto
+    
+
+    +m
+        font-size: 28px
+
+    +s
+        font-size: 24px
 
 =title2
     font-size: 18px
@@ -142,7 +188,6 @@ $shadow_1:  0 0 1px 0 rgba(24, 94, 224, 0.15), 0 6px 12px 0 rgba(24, 94, 224, 0.
     font-weight: 700
     line-height: (24/13)
 
-
 $font-size-mid-4: 17.4px
 $font-size-5xl-8: 24.8px
 $ibm-plex-sans-caption-regular-12-size: 12px
@@ -150,7 +195,6 @@ $ibm-plex-sans-body-2-regular-14-size: 14px
 $ibm-plex-sans-body-1-regular-16-size: 16px
 $font-size-5xl: 24px
 $font-size-xl: 20px
-
 
 $color-gray-100: #fafafa
 $color-gray-200: #0b0b0b
@@ -163,7 +207,6 @@ $color-lavender: #d2eaff
 $color-darkslategray: #393939
 $color-slateblue: #3f51b5
 
-
 $gap-base: 16px
 $gap-3xs-9: 9.9px
 $gap-5xs: 8px
@@ -171,7 +214,6 @@ $gap-8xs: 5px
 $gap-11xs: 2px
 $gap-9xs: 4px
 $gap-xl: 20px
-
 
 $padding-base: 16px
 $padding-lg-6: 18.6px
@@ -188,7 +230,6 @@ $padding-3xs: 10px
 $padding-mid: 17px
 $padding-lg: 18px
 $padding-7xs: 6px
-
 
 $br-xl: 20px
 $br-base: 16px
@@ -255,4 +296,3 @@ $br-31xl: 50px
 =dark-common
     @at-root .dark-mode &
         @content
-

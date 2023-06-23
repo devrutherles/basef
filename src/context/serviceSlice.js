@@ -17,16 +17,12 @@ const ServiceSlice = createSlice({
       longitude : null,
       mounters: 0,
       hours: 0,
-      makers: null,
-      step: 1,
       originPlace: "",
-      zoom: 17,
       destinationPlace: "",
       routeGeoJSON: null,
+      details: '',
       labelLocation: null,
-      isOpen : false,
-      boundingBoxOrigin: null,
-      boundingBoxDestination: null,
+   
       onLoad: null
     },
 

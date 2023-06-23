@@ -1,0 +1,238 @@
+@keyframes backColor {
+  0% {
+    transform: translateY(25px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+.card {
+  min-height: 300px;
+  height: auto;
+  width: 100%;
+  z-index: 30;
+  transition: 0.3s all linear;
+}
+
+.notifications {
+  position: absolute;
+  width: 100%;
+  z-index: -300;
+  height: 160px;
+  max-height: 160px;
+  min-height: 130px;
+  border-radius: 2px 2px 0px 0px;
+  top: -150px;
+  background-color: #3070F6;
+  transition: 0.3s all linear;
+}
+
+.notifications[data-isopen=true] {
+  transform: translateY(120px);
+}
+
+.small {
+  transition: 0.3s all linear;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: row;
+  margin-right: auto;
+  background-color: #3070F6;
+  width: 100%;
+  flex-basis: 10px;
+}
+.small span {
+  transition: 0.3s all linear;
+  font-size: 14px;
+  font-weight: 400;
+  transform: translateY(-20px);
+  color: #FFFFFF;
+  flex-grow: 10;
+  opacity: 0;
+}
+
+.small[data-isopen=true] {
+  flex-basis: 20px;
+}
+.small[data-isopen=true] span {
+  opacity: 1;
+  transform: translateY(2px);
+}
+
+.btn_1 {
+  width: 100px;
+  color: #3070F6;
+  background: #FFFFFF;
+  border-radius: 40px;
+  height: 30px;
+  font-family: Roboto;
+  font-weight: 600;
+}
+
+.div_content {
+  height: 50px;
+  border-radius: 26px 26px 0px 0px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-block-color: #FFFFFF;
+  padding: 0;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  position: absolute;
+  flex-direction: column;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
+.services {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: auto;
+  height: auto;
+  background: none;
+  position: relative;
+  padding: 0px 10px 0px 10px;
+}
+
+.header_card2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+  transition: 0.3s all linear;
+  width: 100%;
+  color: #FFFFFF;
+}
+.header_card2 span {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-family: Roboto;
+}
+@media only screen and (max-width: 767px) {
+  .header_card2 span {
+    font-size: 28px;
+  }
+}
+@media only screen and (max-width: 474px) {
+  .header_card2 span {
+    font-size: 24px;
+  }
+}
+.header_card2 p {
+  font-size: 16px;
+  letter-spacing: 1.1px;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 20px;
+  font-family: Roboto;
+}
+
+.card_services {
+  padding: 16px 0px 4px 0px;
+}
+
+.block {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  -webkit-margin-after: 15px;
+          margin-block-end: 15px;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.btn {
+  background-color: #FFFFFF;
+  color: #3070F6;
+  border-radius: 40px;
+  width: 25vw;
+  height: 35px;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: 500;
+  flex-direction: row;
+}
+.btn svg {
+  color: #3070F6;
+  font-size: 18px;
+}
+
+.close {
+  display: flex;
+  align-self: flex-end;
+  flex-grow: 1;
+  justify-content: flex-start;
+  -webkit-margin-after: 3px;
+          margin-block-end: 3px;
+}
+.close button {
+  align-self: flex-start;
+  border-radius: 50px;
+  width: 18px;
+  height: 18px;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #FFFFFF;
+}
+.close svg {
+  color: #FFFFFF;
+  font-size: 14px;
+}
+
+.tab {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: flex-end;
+  position: fixed;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  opacity: 0;
+  background-color: #FFFFFF;
+}
+
+.container {
+  width: 100%;
+  flex-basis: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 5;
+  -webkit-margin-after: 15px;
+          margin-block-end: 15px;
+}
+
+.header {
+  width: 100%;
+  position: absolute;
+  height: 50px;
+  background: #FFFFFF;
+  border-radius: 15px 15px 0px 0px;
+  display: flex;
+  bottom: 100%;
+  right: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.content {
+  transition: 0.3s all linear;
+  align-items: center;
+  justify-content: center;
+}
+
+.content[data-isopen=true] {
+  transform: translateY(-3px);
+}/*# sourceMappingURL=CardHome.module.css.map */

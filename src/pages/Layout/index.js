@@ -25,7 +25,6 @@ export default function Layout({ children }) {
 
  {children}
 
- {1==1 && (<div className={styles.tab}><BottonNavigation handleApp={handleApp} step={1} app={app}  /></div>)}
     </div>
     </>
   );

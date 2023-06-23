@@ -1,0 +1,75 @@
+.head {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #EFEFEF;
+}
+:global(.dark-mode) .head {
+  border-color: #272B30;
+}
+
+.info {
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.7142857143;
+}
+
+.btns {
+  display: flex;
+  margin: 0 -4px;
+}
+.btns .button {
+  flex: 0 0 calc(50% - 8px);
+  width: calc(50% - 8px);
+  margin: 0 4px;
+  padding: 0 16px;
+}
+.btns .button img {
+  margin-right: 10px;
+}
+
+.body .button {
+  width: 100%;
+}
+
+.field {
+  margin-bottom: 12px;
+}
+
+.note {
+  margin-top: 32px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.7142857143;
+  color: #9A9FA5;
+}
+
+.cap {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.subtitle {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.7142857143;
+}
+
+.error {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #FF6A55;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.7142857143;
+}
+
+.label {
+  margin-bottom: -10px;
+  color: #9A9FA5;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.7142857143;
+}/*# sourceMappingURL=Entry.module.css.map */

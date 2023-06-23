@@ -1,0 +1,52 @@
+.col--search {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.search {
+  width: 100%;
+}
+.rectangle-1-2-1-2 {
+  border-radius: 20px;
+  height: 25px;
+  width: 25px;
+}
+
+.frame-3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 50px;
+}
+
+.text-1 {
+  text-align: left;
+  vertical-align: middle;
+  font-size: 15px;
+  font-family: Roboto;
+  line-height: 34px;
+  color: #33383F;
+  font-weight: 400;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.text-2 {
+  text-align: left;
+  vertical-align: top;
+  font-size: 12px;
+  font-family: Roboto;
+  line-height: 11px;
+  color: #6F767E;
+  font-weight: 400;
+  -webkit-margin-after: 5px;
+          margin-block-end: 5px;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}/*# sourceMappingURL=List.module.css.map */

@@ -10,7 +10,7 @@ import Image from "next/image";
 
 export default function RenderRow(props) {
 
-  const { icon, label, text } = props
+  const { icon, label, text , lestIcon} = props
 
   return (
 
@@ -22,7 +22,7 @@ export default function RenderRow(props) {
 
 
       <div className={styles['icon']}>
-      <Image src={icon}/>
+      <Image alt='' src={icon}/>
       </div>
 
 
@@ -32,9 +32,10 @@ export default function RenderRow(props) {
        </div>
 
 
-      <div className={styles.button}>
+    { lestIcon && (  <div className={styles.button}>
         <ChevronRightOutlined />
-      </div>
+      </div>)
+      }
 
     </div>
 

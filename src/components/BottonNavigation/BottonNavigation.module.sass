@@ -31,11 +31,22 @@
   border-radius: 99px
   cursor: pointer
   transition: color 0.15s ease-in
+  img
+    width: 40px
+    height: 40px
+    +s
+      width: 35px
+      height: 35px
+
+ 
   
   svg
     font-size: 25px
+    
     color: $n4
     transition: transform 0.15s ease-in
+    +s
+    font-size: 22px
 
   p
     font-size: 0
@@ -47,8 +58,8 @@
   display: flex
   align-items: center
   justify-content: center
-  width: 5%
-  height: auto
+  width: 10px
+  height: 10px
   position: absolute
   top: 4%
   left: 47%
@@ -67,14 +78,19 @@
   transition: 0.25s all linear
   color: $n
   img
+    width: 35px
+    height: 35px
  
   svg
     color: $n
 
     
   p
+   
     color: $n
     font-size: 7px
+    +s
+    font-size: 6px
     
     transform: scale(2)
     

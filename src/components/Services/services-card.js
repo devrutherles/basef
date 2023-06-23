@@ -1,21 +1,68 @@
-import Image from "next/image";
-import { memo } from "react";
+import Image from "../Imagem";
+import { memo, useState, useEffect } from "react";
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 import styles from "./services-card.module.sass";
 import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
-const ServicesCard = memo((props) => {
-  const { config, key } = props
+import { formatPrice } from "@/utils";
+const ServicesCard = (props) => {
 
-  console.log(config)
+  const { config, handleService, service, app, handleApp, createService
+  } = props
+
+
+  const { distance } = service;
+
+  const helpers = service.helpers ||  config.helpers
+  const hours =  service.hours || config.hours
+
+
+  const valor = (id, value_km, value_base, value_helpers, value_hours, helpers, hours) => {
+    console.log(distance)
+    console.log(id, value_km, value_base, value_helpers, value_hours)
+    if (id == 3) {
+      let preco = distance < 6 ? 9 : distance * value_km;
+      return preco
+
+    } else if (id == 1) {
+      let preco = value_base + distance * value_km + helpers * value_helpers
+      return preco
+    } else {
+      let preco = value_hours * hours + helpers * value_helpers + 1 * value_hours;
+      return preco
+    }
+
+
+  }
+
 
   return (
-    <div key={config.id} className={styles.service_card}>
+    <div onClick={() => {
+      app.step == 2 &&
+      createService({
+
+      service: config?.service,
+      helpers: config?.helpers,
+      hours: config?.hours,
+      image2: config?.image2,
+      id: config?.id,
+
+
+    });
+
+    handleApp(
+      {...app,
+      step: 3
+    })
+    
+    
+    }} className={styles.service_card}>
 
       <div className={styles.header}>
+
         <div className={styles.image_service}>
           <Image
-            width={78}
-            height={76}
+            w={78}
+            h={76}
             alt=""
             src={config?.image2}
           />
@@ -24,7 +71,7 @@ const ServicesCard = memo((props) => {
           <div className={styles.row}>
 
             <b>{config?.description}</b>
-            <b>R$ 8.00</b>
+            {formatPrice(valor(config?.id, config?.value_km, config?.value_base, config?.value_helpers, config?.value_hours, helpers, hours))}
           </div>
 
 
@@ -36,8 +83,8 @@ const ServicesCard = memo((props) => {
 
 
             <div className={styles.icons}>
-                <div>{config?.id != 3 && <><PeopleAltOutlinedIcon/> <span>{config?.helpers}</span> </>  }</div>
-                <div>{config?.id == 2 && <><AccessTimeOutlinedIcon/> <span>{config?.hours}</span> </>  }</div>          
+              <div>{config?.id != 3 && <><PeopleAltOutlinedIcon /> <span>{helpers}</span> </>}</div>
+              <div>{config?.id == 2 && <><AccessTimeOutlinedIcon /> <span>{hours}</span> </>}</div>
             </div>
 
           </div>
@@ -51,6 +98,6 @@ const ServicesCard = memo((props) => {
     </div>
 
   );
-});
+};
 
 export default ServicesCard;

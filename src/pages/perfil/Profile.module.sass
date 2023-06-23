@@ -1,0 +1,325 @@
+@import ../../styles/helpers
+
+.container
+    width: 100%
+    height: 100vh
+
+.content
+    width: 100%
+    height: 100%
+    display: flex
+    align-items: center
+    justify-content: space-around
+    background-color: $n
+
+.cardGeral
+    width: 30%
+    height: 95%
+    border-radius: 10px
+    box-shadow: 0px 0px 5px 1px $shades1
+    background: $primary
+
+    +xs
+        width: 100%
+        height: 100%
+        padding: 18px
+    +md
+        width: 100%
+        height: 100%
+        padding: 18px
+
+.header
+    width: 100%
+    height: 20%
+    display: flex
+    align-items: center
+    flex-direction: row
+    justify-content: space-around
+
+.return
+    width: 90%
+    height: 10%
+    display: flex
+    align-items: center
+    flex-direction: row
+    justify-content: space-around
+
+.row
+    width: 90%
+    height: 50%
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    svg
+        width: 30px
+        height: 30px
+        color: $lightGray
+        cursor: pointer
+    h1
+        font-size: $h4
+        color: $lightGray
+        font-family: 'SF Pro Display', sans-serif
+        font-weight: 300
+
+.row_Info
+    width: 100%
+    height: 50%
+    display: flex
+    align-items: center
+    flex-direction: row
+    padding: 0px 22px
+    gap: 1rem
+    +xs
+        flex-direction: column
+        justify-content: center
+        gap: 1rem
+    +md
+        flex-direction: column
+        justify-content: center
+        gap: 1rem
+        height: 25%
+
+.avatar
+    width: 60px
+    height: 60px
+    img
+        width: 100%
+        height: 100%
+        object-fit: cover
+        border-radius: 50%
+
+    +xs
+        width: 80px
+        height: 80px
+    +md
+        width: 80px
+        height: 80px
+
+.info
+    display: flex
+    align-items: center
+    flex-direction: column
+    height: 40%
+    h1
+        font-size: $h5
+        font-weight: 300
+        font-family: 'SF Pro Display', sans-serif
+        color: $lightGray
+    h2
+        font-size: $h7
+        color: $gray
+        font-weight: 200
+        font-family: 'SF Pro Display', sans-serif
+    +xs
+        h1
+            font-size: $h5
+            font-weight: 700
+            font-family: 'SF Pro Display', sans-serif
+            line-height: 19.92px
+        h2
+            font-size: $h6
+            color: $darkGray
+            font-weight: 400
+            font-family: 'SF Pro Display', sans-serif
+            line-height: 15.43px
+    +md
+        h1
+            font-size: $h4
+            font-weight: 700
+            font-family: 'SF Pro Display', sans-serif
+            line-height: 19.92px
+        h2
+            font-size: $h6
+            color: $darkGray
+            font-weight: 400
+            font-family: 'SF Pro Display', sans-serif
+            line-height: 15.43px
+
+.btn_row
+    width: 90%
+    height: 20%
+    display: flex
+    align-items: center
+    justify-content: space-around
+    flex-direction: row
+    background: $n3
+    border-radius: 10px
+    margin: 10px
+    +xs
+
+        justify-content: center
+        height: 7%
+    +md
+        justify-content: center
+        height: 7%
+
+.btn
+    display: flex
+    flex-direction: row
+    align-items: center
+    padding: 10px
+    gap: 2rem
+    width: 90%
+    height: 85%
+    border-radius: 10px
+
+.button_perfil
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-items: center
+    padding: 10px 50px 10px 50px
+    gap: 10px
+    width: 45%
+    height: 40px
+    background: $n
+    border: 1px solid rgba(0, 0, 0, 0.15)
+    border-radius: 10px
+    color: $primary
+    font-size: $h6
+    font-family: 'Roboto', sans-serif
+    font-weight: 200
+    line-height: 20px
+    letter-spacing: 0.30000001192092896px
+    text-align: center
+
+.button_historico
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-items: center
+    padding: 10px 50px 10px 45px
+    gap: 10px
+    width: 45%
+    height: 40px
+    background: $primary
+    border: 1px solid rgba(0, 0, 0, 0.15)
+    border-radius: 10px
+    color: $n
+    font-size: $h6
+    font-family: 'Roboto', sans-serif
+    font-weight: 200
+    line-height: 20px
+    letter-spacing: 0.30000001192092896px
+    text-align: center
+
+.input_area
+    width: 100%
+    height: 60%
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-direction: column
+    background: $n2
+    border-radius: 22px 22px 0 0
+    input
+        width: 90%
+        height: 50px
+        border-radius: 10px
+        border: 1px solid $shades2
+        font-size: $h7
+        color: #333333
+        font-family: 'SF Pro Display', sans-serif
+        margin-bottom: 10px
+        background: $n2
+        padding-left: 16px
+        &::placeholder
+            color: $n4
+            font-weight: 100
+            font-size: $h7
+        &:focus
+            border: 0.5px solid $primary
+            outline: none
+
+.label
+    font-size: $h7
+    font-weight: 300
+    width: 80%
+    height: 7%
+
+.drawerOpen
+    position: fixed
+    top: 5%
+    right: 38%
+    width: 7%
+    height: 20%
+    background-color: $n2
+    li
+        font-size: $h6
+        font-weight: 300
+        color: $n8
+        cursor: pointer
+        width: 100%
+        transition: all 0.3s ease-in-out
+        &:hover
+            color: $primary
+
+    ul
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: space-around
+        height: 100%
+        width: 100%
+        text-align: center
+
+.drawerClosed
+    display: none
+
+.row_history
+    width: 100%
+    height: 15%
+    display: flex
+    flex-direction: row
+    justify-content: space-around
+    background: $n1
+    align-items: center
+    border-radius: 18px 18px 0 0
+    button
+        display: flex
+        flex-direction: row
+        align-items: center
+        justify-content: space-around
+        width: 20%
+        height: 65%
+        background: $gray
+        color: $n
+        font-size: $h7
+        font-family: 'Roboto', sans-serif
+        font-weight: 300
+        border-radius: 10px
+        &:hover
+            background: $n2
+            color: $primary
+            transition: all 0.3s ease-in-out
+            width: 22%
+        &:focus
+            background: $primary
+            color: $n
+            transition: all 0.5s ease-in-out
+            width: 25%
+
+.historico
+    width: 100%
+    height: 60%
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: space-around
+
+.body_history
+    width: 100%
+    height: 85%
+    display: flex
+    flex-direction: column
+    align-items: center
+    background: $n2
+
+.card
+    width: 100%
+    height: 40%
+
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: space-around

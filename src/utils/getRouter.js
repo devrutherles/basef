@@ -9,7 +9,7 @@ const useGetRoute = async (data,lng,lat) => {
   const encodedUrl = encodeURI(data);
   let route = [];
   try {
-    const url =`https://api.mapbox.com/search/geocode/v6/forward?q=${encodedUrl}&country=br&limit=4${procimit}&types=address%2Cstreet%2Cneighborhood&language=pt&autocomplete=true&access_token=${MAP_BOX_TOKEN}`;
+    const url =`https://api.mapbox.com/search/geocode/v6/forward?q=${encodedUrl}&country=br&limit=3${procimit}&types=address%2Cstreet%2Cneighborhood&language=pt&autocomplete=true&access_token=${MAP_BOX_TOKEN}`;
     const response = await axios.get(url);
 
 

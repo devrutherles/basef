@@ -5,18 +5,21 @@ import {
   Databases,
   Functions,
   ID,
+  Locale,
   Permission,
   Query,
   Role,
   Storage,
-  Teams,
-} from "appwrite";
-import React, { createContext, useContext, useState } from "react";
+  Teams
+} from 'appwrite';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import {
   PROJECT_ENDPOINT,
   PROJECT_ID,
   SERVICOS_COLLECTION_ID,
-} from "../libs/default";
+  socket
+} from '../libs/default';
+
 const client = new Client();
 client.setEndpoint(PROJECT_ENDPOINT).setProject(PROJECT_ID);
 const ServerContext = createContext(null);
@@ -29,20 +32,22 @@ const Permissions = Permission;
 const Roles = Role;
 const id = ID;
 const functions = new Functions(client);
+
+
+
 const ServerProvider = ({ children }) => {
   const [update, setUpdate] = useState(null);
   const loginUsingCredentials = async (email, password) => {
-    const promise = account.createEmailSession(email, password);
-
-    promise.then(
-      function (response) {
-        console.log(response); // Success
-      },
-      function (error) {
-        console.log(error); // Failure
-      }
-    );
+    return await account.createEmailSession(email, password);
   };
+
+
+  const createAccount = async (email, password, name) => {
+    // sua implementação para criar conta
+};
+
+
+
   const getAccount = async () => {
     return await account.get();
   };
@@ -68,51 +73,57 @@ const ServerProvider = ({ children }) => {
   const getServicoList = async (filters, limit, offset) => {
     return databases.listDocuments(SERVICOS_COLLECTION_ID, filters);
   };
-  const createServico = async (data, user_id) => {
-    const servico = await databases.createDocument(
-      "freteme",
-      "servicos",
-      id.unique(),
-      data,
-      [Permission.write(Role.user(user_id))]
-    );
-    return servico;
+
+  const createServico =  (data) => {
+
+const promise = databases.createDocument('freteme', 'servicos',  id.unique(), data);
+
+promise.then(function (response) {
+    console.log(response); 
+    return response;
+}, function (error) {
+    console.log(error); // Failure
+});
+
+  
+    
+   
   };
   const ceateFunction = async () => {
-    const promise = functions.createExecution("socket");
+    const promise = functions.createExecution('socket');
     return promise;
   };
   const updateMessage = async (id, data, callback) => {
     try {
       const updatedDocument = await databases.updateDocument(
-        "freteme",
-        "chat",
+        'freteme',
+        'chat',
         id,
         {
-          message: data,
+          message: data
         }
       );
 
       callback(null, updatedDocument);
     } catch (error) {
       callback(error, null);
-      console.error("Erro ao atualizar o documento:", error);
+      console.error('Erro ao atualizar o documento:', error);
     }
   };
   const createMessage = async (chat_id) => {
     const id = chat_id;
-    const driver = "Bruno Matheus";
+    const driver = 'Bruno Matheus';
     if (!id || !driver) return;
 
     try {
       const response = await databases.createDocument(
-        "freteme",
-        "chat",
+        'freteme',
+        'chat',
         id,
         {
           order_id: id,
           driver: driver,
-          user: "",
+          user: '',
           message: [
             `{
               owner: ${driver}
@@ -120,25 +131,25 @@ const ServerProvider = ({ children }) => {
                 Olá, eu serei seu motorista nesse serviço! É proibido enviar mensagens com dados pessoais tais como: Senhas, telefone, email e documentos pessoais sensíveis, toda a comunicação é feita através do app! Caso isso ocorra, o chat será encerrado e o serviço cancelado.,
               created_at: ${Date.now()},
               status: false,
-            }`,
-          ],
+            }`
+          ]
         },
         [Permission.write(Roles.any()), Permission.read(Roles.any())]
       );
 
-      if (typeof callback === "function") {
+      if (typeof callback === 'function') {
         console.warn(response);
         callback(null, response);
       }
     } catch (error) {
       console.error(error);
-      if (typeof callback === "function") {
+      if (typeof callback === 'function') {
         callback(error);
       }
     }
   };
   const deleteMessage = (id, callback) => {
-    const promise = databases.deleteDocument("freteme", "chat", "1");
+    const promise = databases.deleteDocument('freteme', 'chat', '1');
 
     promise.then(
       function (response) {
@@ -151,9 +162,9 @@ const ServerProvider = ({ children }) => {
   };
   const getMessages = (id, callback) => {
     const promise = databases.getDocument(
-      "freteme",
-      "chat",
-      "644616199d934bd9af8a"
+      'freteme',
+      'chat',
+      '644616199d934bd9af8a'
     );
 
     promise.then(
@@ -167,7 +178,7 @@ const ServerProvider = ({ children }) => {
   };
   const getServices = (callback) => {
     databases
-      .listDocuments("freteme", "servicos", [Query.equal("status", "pendente")])
+      .listDocuments('freteme', 'servicos', [Query.equal('status', 'pendente')])
       .then((response) => {
         callback(null, response.documents);
       })
@@ -177,9 +188,9 @@ const ServerProvider = ({ children }) => {
   };
   const getMyService = (id, callback) => {
     databases
-      .listDocuments("freteme", "servicos", [
-        Query.equal("user_id", id),
-        Query.notEqual("status", "finalizado"),
+      .listDocuments('freteme', 'servicos', [
+        Query.equal('driver_id', id),
+        Query.notEqual('status', 'finalizado')
       ])
       .then((response) => {
         callback(null, response.documents);
@@ -190,7 +201,7 @@ const ServerProvider = ({ children }) => {
   };
   const getHistory = (id, callback) => {
     databases
-      .listDocuments("freteme", "servicos", [Query.equal("driver_id", id)])
+      .listDocuments('freteme', 'servicos', [Query.equal('driver_id', id)])
       .then((response) => {
         callback(null, response.documents);
       })
@@ -200,9 +211,9 @@ const ServerProvider = ({ children }) => {
   };
   const getNotification = (id, callback) => {
     databases
-      .listDocuments("freteme", "notification", [
-        Query.equal("user_id", `${id}`),
-        Query.limit(10),
+      .listDocuments('freteme', 'notification', [
+        Query.equal('user_id', `${id}`),
+        Query.limit(10)
       ])
       .then((response) => {
         callback(null, response.documents);
@@ -213,11 +224,11 @@ const ServerProvider = ({ children }) => {
   };
   const acceptService = async (id, data, callback) => {
     if (!id || !data) return;
-    const response = databases.updateDocument("freteme", "servicos", id, {
-      status: "aceito",
+    const response = databases.updateDocument('freteme', 'servicos', id, {
+      status: 'aceito',
       driver: [JSON.stringify(data?.driver)],
       driver_id: data?.driver.id,
-      veiculo: data?.veiculo,
+      veiculo: data?.veiculo
     });
 
     response.then(
@@ -233,8 +244,8 @@ const ServerProvider = ({ children }) => {
     );
   };
   const updateService = async (id, status, callback) => {
-    const response = databases.updateDocument("freteme", "servicos", id, {
-      status: [status],
+    const response = databases.updateDocument('freteme', 'servicos', id, {
+      status: [status]
     });
 
     response.then(
@@ -266,7 +277,21 @@ const ServerProvider = ({ children }) => {
     const response = avatars.getInitials();
     return response;
   };
-
+  const realTime = () => {
+    socket.on('connect-error', (error) => {
+      console.error('Erro ao conectar', error);
+    });
+    socket.on('connect', (response) => {
+      console.warn('conectado');
+    });
+    socket.emit('servicos', () => {});
+    socket.on('update', async (update) => {
+      setUpdate(update);
+      console.warn(update);
+    });
+    socket.on('response', async (response) => {});
+    return socket;
+  };
   const updateAccount = async (data) => {
     if (data) {
       if (data.name) {
@@ -293,10 +318,12 @@ const ServerProvider = ({ children }) => {
     );
   };
   const updatePhone = async (phone, password) => {
-    const promise = account.updatePhone("+55" + phone, password);
+    const promise = account.updatePhone('+55' + phone, password);
 
     promise.then(
-      function (response) {},
+      function (response) {
+        Alert.alert('Sucesso', 'Telefone atualizado com sucesso');
+      },
       function (error) {
         console.error(error); // Failure
       }
@@ -318,12 +345,12 @@ const ServerProvider = ({ children }) => {
     const data = {
       user_id: user_id,
       role: role,
-      token: token,
+      token: token
     };
     try {
       const response = await databases.createDocument(
-        "freteme",
-        "token",
+        'freteme',
+        'token',
         user_id,
         data,
 
@@ -336,7 +363,7 @@ const ServerProvider = ({ children }) => {
     const response = account.updatePrefs({
       documents: data.documents,
       role: data.role,
-      veiculo: data.veiculo,
+      veiculo: data.veiculo
     });
 
     response.then(
@@ -366,6 +393,7 @@ const ServerProvider = ({ children }) => {
         deleteServico,
         getConfig,
         getMyService,
+        realTime,
         ceateFunction,
         updateName,
         handleToken,
@@ -378,6 +406,7 @@ const ServerProvider = ({ children }) => {
         acceptService,
         updatePhone,
         updatePassword,
+        createAccount
       }}
     >
       {children}

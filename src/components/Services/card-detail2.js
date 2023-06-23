@@ -1,29 +1,48 @@
 import { Add, HomeTwoTone, Remove } from "@mui/icons-material";
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import styles from "./card-detail2.module.sass";
 import GroupAddTwoToneIcon from '@mui/icons-material/GroupAddTwoTone';
 import AccessTimeTwoToneIcon from '@mui/icons-material/AccessTimeTwoTone';
 import MyLocationTwoToneIcon from '@mui/icons-material/MyLocationTwoTone';
-import { Divider, FormControlLabel, IconButton, Radio, RadioGroup } from "@mui/material";
+import { Button, Divider, FormControlLabel, IconButton, Radio, RadioGroup } from "@mui/material";
 import EditNoteTwoToneIcon from '@mui/icons-material/EditNoteTwoTone';
 import CallOutlinedIcon from '@mui/icons-material/CallOutlined';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import { ArrowLeft } from "@mui/icons-material";
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import Image from "next/image";
-const CardDetail2 = memo(() => {
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import { Textarea } from "@mui/joy";
+import { phoneMask } from "@/utils";
+const CardDetail2 = (props) => {
   const [home, setHome] = React.useState('')
   const [andar,setAndar] = React.useState()
+  const [tel,setTel] = useState('')
+
+  const handleTel = (data) =>{
+
+    const  newTel =  phoneMask(data)
+
+    setTel(newTel)
+
+  }
+
+
   return (
+
+
+
 
 
     <div className={styles.card_details}>
 
 
-      <div className={styles.container_details}>
+
 
 
         <div className={styles.row_details}>
           <div className={styles.icon}>
-            <HomeTwoTone />
+            <HomeOutlinedIcon />
           </div>
           <div className={styles.label}>
 
@@ -68,28 +87,40 @@ const CardDetail2 = memo(() => {
             />
           </div>
           <div className={styles.label}>
-            <input type={'text'} placeholder={'Telefone'} />
+            <input value={tel} maxLength={15} onChange={(e)=> handleTel(e.target.value)} type={'text'} placeholder={'Telefone'} />
           </div>
     
         </div>
 
         <div className={styles.row_details}>
-          <div className={styles.icon}>
-            <EditNoteTwoToneIcon
+      
 
 
-            />
-          </div>
-          <div className={styles.label}>
-            <input type={'text'} placeholder={'Descrição dos itens'} />
-          </div>
+          <Textarea
+  color="neutral"
+  disabled={false}
+  minRows={2}
+  placeholder="Descreva os itens ..."
+  variant="plain"
+  sx={{
+    fontSize:'14px',
+    fontWeight: 400,
+    width:'100%',
+    height:'100%',
+    color: '#606060',
+    fontFamily: "IBM Plex Sans"
+
+  }}
+/>
+          
     
         </div>
 
 
       </div>
-    </div>
+
+
   );
-});
+};
 
 export default CardDetail2;

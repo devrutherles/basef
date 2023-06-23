@@ -1,101 +1,96 @@
-import { Add, Remove } from "@mui/icons-material";
-import { memo } from "react";
-import styles from "./card-detail2.module.sass";
-import GroupAddTwoToneIcon from '@mui/icons-material/GroupAddTwoTone';
-import AccessTimeTwoToneIcon from '@mui/icons-material/AccessTimeTwoTone';
-import MyLocationTwoToneIcon from '@mui/icons-material/MyLocationTwoTone';
-import { Divider } from "@mui/material";
-import Image from "next/image";
-const CardDetail2 = memo(() => {
+import styles from "./card-details1.module.sass";
+import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import NewSelect from '../NewSelect'
+const CardDetail2 = (props) => {
+
+  const { service, app, handleApp, handleService } = props
+  const handleHel = (event, newData) => {
+    event.preventDefault()
+
+
+    handleService({
+      helpers: newData
+    })
+
+
+
+
+
+
+  };
+
+
+  const handleHor = (event, newData) => {
+    event.preventDefault()
+
+
+
+    handleService({
+      hours: newData
+    })
+
+
+
+
+
+  };
+
+  console.warn(service)
+
+
   return (
 
 
     <div className={styles.card_details}>
 
 
-      <div className={styles.container_details}>
 
 
+      {service.id != 3 && (
         <div className={styles.row_details}>
-          <div className={styles.icon}>
-            <GroupAddTwoToneIcon
 
-              alt=""
-              src="/vuesaxlinearwallet3.svg"
-            />
-          </div>
-          <div className={styles.label}>
-            <p>{'1 ' }Ajudantes</p>
-          </div>
-          <div className={styles.soma}>
-            <div className={styles.btn_soma}>
-              <button>
-                <Remove />
-              </button>
+          <NewSelect onChange={handleHel} label={'Ajudantes'} number={service.helpers} Icon={PeopleAltOutlinedIcon} />
+          {service.id == 2 && (<NewSelect onChange={handleHor} number={3} label={'horas'} Icon={AccessTimeIcon} />)}
 
-              <button>
-                <Add />
-              </button>
-
-            </div>
-          </div>
-        </div>
-
-
-        <div className={styles.row_details}>
-          <div className={styles.icon}>
-            <AccessTimeTwoToneIcon
-
-
-            />
-          </div>
-          <div className={styles.label}>
-            <p> 1 Horas</p>
-          </div>
-          <div className={styles.soma}>
-            <div className={styles.btn_soma}>
-              <button>
-                <Remove />
-              </button>
-
-              <button>
-                <Add />
-              </button>
-
-            </div>
-          </div>
-        </div>
-
-
-        <div className={styles.location}>
-          <div className={styles.location_content}>
-            <div className={styles.icon}>
-
-              <Image width={30} height={80} alt='' src={require('../../images/location.svg')} />
-
-            </div>
-
-            <div className={styles.location_destination}>
-
-              <input type={'text'} value="rua maria de belem" />
-              <input type={'text'} value="rua maria de belem" />
-            </div>
-
-            <div className={styles.location_destination}>
-
-              <button>editar</button>
-              <button>editar</button>
-            </div>
+        </div>)}
 
 
 
-          </div>
+      {
+        /*
+               <div className={styles.location}>
+                 <div className={styles.location_content}>
+                   <div className={styles.icon}>
+       
+                     <Image width={30} height={80} alt='' src={require('../../images/location.svg')} />
+       
+                   </div>
+       
+                   <div className={styles.location_destination}>
+       
+                     <input type={'text'} value="rua maria de belem" />
+                     <input type={'text'} value="rua maria de belem" />
+                   </div>
+       
+                   <div className={styles.location_destination}>
+       
+                     <button>editar</button>
+                     <button>editar</button>
+                   </div>
+       
+       
+       
+                 </div>
+       
+       
+               </div>
+             */
 
+      }
 
-        </div>
-      </div>
     </div>
   );
-});
+};
 
 export default CardDetail2;

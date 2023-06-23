@@ -1,0 +1,129 @@
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 48px;
+  background: #FCFCFC;
+}
+@media only screen and (max-width: 767px) {
+  .login {
+    padding: 24px;
+  }
+}
+:global(.dark-mode) .login {
+  background: #1A1D1F;
+}
+
+.wrapper {
+  max-width: 296px;
+}
+@media only screen and (max-width: 767px) {
+  .wrapper {
+    max-width: 100%;
+  }
+}
+
+.logo {
+  display: inline-block;
+  max-width: 296px;
+}
+@media only screen and (max-width: 767px) {
+  .logo {
+    max-width: 40%;
+  }
+}
+.logo img {
+  width: 40%;
+  margin: auto;
+}
+
+.title {
+  margin-top: 48px;
+  margin-bottom: 10px;
+}
+
+.head {
+  margin-bottom: 48px;
+  padding-bottom: 32px;
+  border-bottom: 2px solid #EFEFEF;
+}
+:global(.dark-mode) .head {
+  border-color: #272B30;
+}
+
+.subtitle {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.7142857143;
+}
+
+.btns {
+  margin-top: 5px;
+  justify-content: center;
+  display: flex;
+  margin: 0 -4px;
+}
+.btns .button {
+  flex: 0 0 calc(50% - 8px);
+  width: calc(50% - 8px);
+  margin: 0 4px;
+  padding: 0 16px;
+}
+.btns .button img {
+  margin-right: 10px;
+}
+
+.body .button {
+  width: 100%;
+}
+
+.field {
+  margin-bottom: 12px;
+}
+
+.note {
+  margin-top: 32px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.7142857143;
+  color: #9A9FA5;
+}
+
+.info {
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin-top: 32px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2307692308;
+  color: #6F767E;
+}
+.info a {
+  font-weight: 700;
+  align-items: center;
+  justify-content: center;
+  color: #1A1D1F;
+  transition: color 0.2s;
+}
+:global(.dark-mode) .info a {
+  color: #FCFCFC;
+}
+
+.info a:hover {
+  color: #2A85FF;
+}
+
+.error {
+  margin-top: 32px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2307692308;
+  color: #FF6A55;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin-top: 32px;
+}/*# sourceMappingURL=SignIn.module.css.map */

@@ -1,9 +1,11 @@
+"use client";
+
 import { useState, useEffect, useContext } from "react";
 import { useServer } from "../server/server";
 import { AuthContext } from "../context/auth";
 
 export default function useHandleService() {
-  const { update, getMyService } = useServer();
+  const { update, getMyService , createServico } = useServer();
   const { user } = useContext(AuthContext);
   const [order, setOrder] = useState(null);
   const [encodedRoute, setEncodedRoute] = useState(null);
@@ -23,6 +25,16 @@ export default function useHandleService() {
       }
     });
   };
+
+
+
+  const createNewServico = async(data,user)=>{
+
+    return await createServico(data,user)
+  }
+
+
+
 
   const fetchData = (id) => {
     console.warn(id);
@@ -58,5 +70,7 @@ export default function useHandleService() {
     order,
     user,
     handleUpdateService,
+    createNewServico
+
   };
 }

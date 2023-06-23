@@ -4,7 +4,7 @@ import { WebMercatorViewport } from "viewport-mercator-project";
 import { useDispatch } from "react-redux";
 import { FloatingMarker, FLOATING_MARKER_SIZES, FLOATING_MARKER_ANCHOR_POSITIONS, FLOATING_MARKER_ANCHOR_TYPES, LocationPuck, LOCATION_PUCK_TYPES } from "baseui/map-marker";
 import getDistance from "@/utils/getDistance";
-import 'mapbox-gl/dist/mapbox-gl.css';
+
 import styles from "./Map.module.sass";
 
 const layerStyle = {
@@ -32,16 +32,17 @@ const layerStyle = {
 
 
 
-function Map2({
+function Map2(props) {
+
+const {
   handleService,
   service,
   setNewLocation,
   myLocation,
   app,
   formHeight,
-}) {
-
-
+  cardHeight
+} = props
 
   const [routeGeoJSON, setRouteGeoJSON] = useState(null);
   const mapRef = useRef(null);
@@ -59,20 +60,20 @@ function Map2({
     ...userLocation,
     zoom: 15.9
   });
-  const { cardHeight ,isOpen } = app;
+  const { isOpen } = app;
 
-
+console.log(cardHeight)
 
   const getGeojson = useCallback(async () => {
     try {
       const newRouteGeoJSON = await getDistance(service.origin, service.destination);
       setRouteGeoJSON(newRouteGeoJSON);
-      handleService({ distance: newRouteGeoJSON?.distance });
+      handleService({ distance: newRouteGeoJSON?.distance , encodedRoute: newRouteGeoJSON});
     } catch (error) {
       console.error("Erro ao carregar o GeoJSON:", error);
       
     }
-  }, [service.destination]);
+  }, [service.destination,service.origin]);
 
   useEffect(() => {
     if (service.destination && service.origin) {
@@ -122,14 +123,14 @@ function Map2({
       const tamanho = coordinates.length - 1;
       const minCord = coordinates[0];
       const maxCord = coordinates[tamanho];
-      const padding = 15;
+      const padding = 10;
 
       const viewport = {
         longitude: (minCord[0] + maxCord[0]) / 2,
         latitude: (minCord[1] + maxCord[1]) / 2,
-        zoom: 10,
-        width: window.innerWidth - 50,
-        height: window.innerHeight - cardHeight -30 ,
+        zoom: 1,
+        width: window.innerWidth  ,
+        height: cardHeight.height - 300 ,
       };
 
       const { longitude, latitude, zoom } = new WebMercatorViewport(viewport).fitBounds(
@@ -147,7 +148,7 @@ function Map2({
         zoom,
       });
     }
-  }, [routeGeoJSON, service.destination]);
+  }, [routeGeoJSON, service.origin, service.destination, cardHeight , isOpen]);
 
 
   const [mapSize, setMapSize] = useState({
@@ -159,7 +160,7 @@ function Map2({
 
   const renderMarkers = useMemo(() => {
     return (
-      <div>
+      <>
         {service.location && !service.origin && (
           <Marker longitude={service.location[0]} latitude={service.location[1]}>
             <div id="ping" className={styles.ping}>
@@ -181,7 +182,7 @@ function Map2({
               size={FLOATING_MARKER_SIZES.small}
 
               startEnhancer={() => <span>{service.originPlace}</span>}
-              anchor={FLOATING_MARKER_ANCHOR_POSITIONS.bottomRight}
+              anchor={FLOATING_MARKER_ANCHOR_POSITIONS.bottomLeft}
               
             />
           </Marker>
@@ -193,7 +194,7 @@ function Map2({
               secondaryLabel="Fastest route"
               label={"..."}
               size={FLOATING_MARKER_SIZES.small}
-              anchor={FLOATING_MARKER_ANCHOR_POSITIONS.bottomLeft}
+              anchor={FLOATING_MARKER_ANCHOR_POSITIONS.bottomRight}
               anchorType={FLOATING_MARKER_ANCHOR_TYPES.square}
               startEnhancer={() => <span>{service.destinationPlace}</span>}
               overrides={{
@@ -204,16 +205,28 @@ function Map2({
             />
           </Marker>
         )}
-      </div>
+
+ 
+   { service.origin && service.destination && routeGeoJSON &&(
+        <Source id="route" type="geojson" data={routeGeoJSON}>
+          <Layer {...layerStyle} />
+        </Source>
+      )}
+       
+
+      </>
+
+
     );
-  }, [service.destination, service.origin, service.location]);
+  }, [service.destination, service.origin, service.location , routeGeoJSON , cardHeight , isOpen ]);
+
 
   useEffect(() => {
     const handleResize = () => {
       setMapSize((prevMapSize) => ({
         ...prevMapSize,
         width: window.innerWidth,
-        height: window.innerHeight - cardHeight,
+        height:  cardHeight,
       }));
     };
 
@@ -222,7 +235,7 @@ function Map2({
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [isOpen]);
+  }, [cardHeight,isOpen]);
 
 
   return (
@@ -237,13 +250,10 @@ function Map2({
       transitionDuration={200}
     >
       <GeolocateControl />
+      
+      
+ 
       {renderMarkers}
-
-      {service.destination && routeGeoJSON && service.origin && (
-        <Source id="route" type="geojson" data={routeGeoJSON}>
-          <Layer {...layerStyle} />
-        </Source>
-      )}
     </ReactMapGL>
   );
 }

@@ -40,8 +40,7 @@ export function maskBrazilianPhone(value) {
   return value;
 }
 
-const phoneNumber = "11912345678";
-console.log(maskBrazilianPhone(phoneNumber)); // Output: (11) 91234-5678
+
 
 
 export const formatPrice = (data) => {

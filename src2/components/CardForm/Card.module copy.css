@@ -1,0 +1,242 @@
+.card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #FFFFFF;
+  border-radius: 7px;
+}
+
+.card--header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.media {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+.media--body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.card_body {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 2%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.avatar img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  width: 110px;
+}
+
+.badge {
+  font-size: 14px;
+  color: #6F767E;
+  outline-color: #33383F;
+  outline-style: solid;
+  border-radius: 20%;
+  opacity: 0.7;
+}
+
+.media--content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.text-2 {
+  text-align: left;
+  vertical-align: top;
+  font-size: 20px;
+  font-family: Roboto;
+  line-height: auto;
+  color: #1A1D1F;
+}
+
+.text-3 {
+  text-align: left;
+  vertical-align: top;
+  font-size: 14px;
+  font-family: Roboto;
+  letter-spacing: 0.8px;
+  color: #1A1D1F;
+}
+
+.message {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.message div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.message svg {
+  font-size: 22px;
+  color: #2A85FF;
+}
+.message span {
+  font-size: 12px;
+}
+
+.icon--message {
+  height: 15px;
+  width: 15px;
+}
+
+.input--origem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  -webkit-padding-after: 17px;
+          padding-block-end: 17px;
+  -webkit-padding-before: 12px;
+          padding-block-start: 12px;
+  width: 100%;
+}
+
+.address--conteiner-origem {
+  height: auto;
+  width: 90%;
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10%;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 15px rgba(202, 202, 202, 0.3);
+  border-radius: 15px;
+}
+
+.svgorigin--destino {
+  height: 63px;
+  width: 7px;
+}
+
+.address {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3px;
+}
+.address input {
+  width: 100%;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 136%;
+  color: #3E4958;
+}
+
+.location-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  -webkit-padding-before: 2%;
+          padding-block-start: 2%;
+}
+
+.row-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: center;
+  padding-left: 10px;
+  width: 100%;
+}
+
+.preco {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.preco div {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+}
+.preco span {
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.place-svg {
+  height: 30px;
+  width: 30px;
+  color: #FCFCFC;
+}
+.place-svg svg {
+  height: 30px;
+  width: 30px;
+  color: #FCFCFC;
+}
+
+.col-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.text-1-list {
+  text-align: left;
+  vertical-align: start;
+  font-size: 16px;
+  font-family: Roboto;
+  line-height: 20px;
+  font-weight: 500;
+  color: #FCFCFC;
+}
+
+.text-2-list {
+  text-align: left;
+  vertical-align: top;
+  font-size: 14px;
+  font-family: Roboto;
+  line-height: 20px;
+  font-weight: 500;
+  color: #F4F4F4;
+}
+
+#rig {
+  align-self: center;
+  justify-self: center;
+}/*# sourceMappingURL=Card.module copy.css.map */

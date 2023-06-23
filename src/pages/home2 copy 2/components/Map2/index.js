@@ -181,8 +181,8 @@ const divRef = useRef()
         latitude: (minCord[1] + maxCord[1]) / 2,
         zoom: 1,
 
-        width: width - 50,
-        height: window.innerHeight - cardHeight - 50 ,
+        width: 300,
+        height: 500 ,
       };
 
       const { longitude, latitude, zoom } = new WebMercatorViewport(

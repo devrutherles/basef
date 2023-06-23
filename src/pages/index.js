@@ -1,9 +1,10 @@
 import React from "react";
+import Home from './home'
 
 export default function index() {
   return (
-    <div>
-      <h1>FreteMe</h1>
-    </div>
+    <div className="container">
+     <Home/>
+     </div>
   );
 }

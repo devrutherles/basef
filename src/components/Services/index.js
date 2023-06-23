@@ -7,10 +7,21 @@ import useHandleConfig from "@/hooks/useConfig";
 import { Button, IconButton } from "@mui/material";
 import { ArrowLeft } from "@mui/icons-material";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
-const Servico = () => {
-  const { config } = useHandleConfig();
+const Servico = (props) => {
+
+  const {app , handleApp , handleService , service ,config} = props
+  
+  const createService = (data,step) =>{
+    handleService(data);
+    handleApp({
+      ...app,
+      step: step
+    })
+  }  
+  
 
 
+//console.warn(config)
   return (
     <div className={styles.servico}>
 
@@ -20,9 +31,9 @@ const Servico = () => {
 
    
 
-        {config.reverse().map((item, key) =>
+        {config.map((item, key) =>
 
-            <ServicesCard config={item} key={key} />
+            <ServicesCard createService={createService} app={app} service={service} handleApp={handleApp} handleService={handleService} config={item} key={key} />
 
 
 
@@ -34,7 +45,11 @@ const Servico = () => {
 
         <div className={styles.content}>
         
-         <IconButton>
+         <IconButton onClick={()=> handleApp(
+          {
+          ...app,
+          step: 1
+        })}>
           <KeyboardBackspaceIcon/>
           </IconButton>
 

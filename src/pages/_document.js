@@ -5,38 +5,26 @@ import { styletron } from "../styletron";
 import { DocumentContext, Head, Html, Main, NextScript } from "next/document";
 import { Provider as StyletronProvider } from "styletron-react";
 
-function MyDocument({ stylesheets }) {
+function MyDocument( ) {
   return (
     <Html>
       <Head>
-        {stylesheets.map((sheet, i) => (
-          <style
-            key={i}
-            className="_styletron_hydrate_"
-            dangerouslySetInnerHTML={{ __html: sheet.css }}
-            media={sheet.attrs.media}
-            data-hydrate={sheet.attrs["data-hydrate"]}
-          />
-        ))}
+
+      <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+        <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+  
+  
       </Head>
       <body>
+
         <Main />
         <NextScript />
+
       </body>
     </Html>
   );
 }
-MyDocument.getInitialProps = async (ctx) => {
-  const page = await ctx.renderPage({
-    enhanceApp: (App) => (props) =>
-      (
-        <StyletronProvider value={styletron}>
-          <App {...props} />
-        </StyletronProvider>
-      ),
-  });
-  const stylesheets = styletron.getStylesheets() || [];
-  return { ...page, stylesheets };
-};
+
+
 
 export default MyDocument;

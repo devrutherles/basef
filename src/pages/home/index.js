@@ -11,6 +11,7 @@ import { toName } from "@/libs/utils";
 import getMylocation from "@/utils/getMylocation";
 import CardHome from "@/components/CardHome";
 import CardNotification from '@/components/CardNotification'
+import { Paper } from "@mui/material";
 import CardServices from './CardServises'
 import ButtonNavigation from '../../components/BottonNavigation'
 const Index = () => {
@@ -32,14 +33,25 @@ const Index = () => {
   const [back, setBack] = useState(true);
   const [myLocation, setMyLocation] = useState("")
   const [newLocation, setNewLocation] = useState(null)
-  const [cardHeight, setCardHeight] = useState(null)
+  const [cardHeight, setCardHeight] = useState({height:null,width:null})
+  const cardRef = useRef(null)
+  const[resize,setResize] = useState(true)
+
+
+  
 
   useEffect(() => {
     if (divRef.current) {
-      const { clientHeight } = divRef.current;
-      setCardHeight(clientHeight);
+      const { clientHeight , clientWidth } = divRef.current;
+     
+
+      setCardHeight({height: clientHeight , width: clientWidth });
     }
-  }, [divRef, isOpen]);
+  }, [divRef,resize, isOpen, step]);
+
+  console.log(config)
+
+
 
   useEffect(() => {
     const getCurrentLocation = async () => {
@@ -83,7 +95,10 @@ const Index = () => {
 
   const handleOpen = () => {
 
+    console.log(isOpen)
+
     dispatch(setApp({ ...app, isOpen: true }))
+
 
   }
 
@@ -93,11 +108,11 @@ const Index = () => {
 
   return (
 
-    <div className={styles['home']}>
+    <div onResize={()=> setResize('tru')}  className={styles['home']}>
 
-      <div data-isopen={true} className={styles.map} >
+      <div onResize={()=> setResize('ttt')} ref={divRef} className={styles.map}>
         <Map2
-          cardHeight={800}
+          cardHeight={cardHeight}
           setNewLocation={setNewLocation}
           service={service}
           formHeight={formHeight}
@@ -111,26 +126,34 @@ const Index = () => {
           user={user && user.name && toName(user.name)}
         />
 
+
       </div>
 
-      <CardHome
-        handleService={handleService}
-        service={service}
-        step={app.step}
-        myLocation={myLocation}
-        app={app}
-        config={config}
-        handleOpen={handleOpen}
-        handleClose={handleClose}
-        latitude={latitude}
-        longitude={longitude}
-        setNewLocation={setNewLocation}
-        formHeight={formHeight}
-        handleApp={handleApp}
-        user={user}
-      />
- 
+
+      <div data-isopen={isOpen} className={styles.card}>
+
+        <CardHome
+          handleService={handleService}
+          service={service}
+          step={app.step}
+          myLocation={myLocation}
+          app={app}
+          isOpen={isOpen}
+          config={config}
+          handleOpen={handleOpen}
+          handleClose={handleClose}
+          latitude={latitude}
+          longitude={longitude}
+          setNewLocation={setNewLocation}
+          formHeight={formHeight}
+          handleApp={handleApp}
+          user={user}
+        />
+
+      </div>
     </div>
+
+
 
 
   )

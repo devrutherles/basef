@@ -57,7 +57,7 @@ const Service = (props) => {
 
 
 
-console.log(id)
+  console.log(id)
 
 
 
@@ -230,13 +230,13 @@ console.log(id)
 
       </div>
 
-{id != 2 && (
-  <div className={styles.btnGroup}>
-  <ButtonGroup/>
-  </div>
-)}
+      {id != 2 && (
+        <div className={styles.btnGroup}>
+          <ButtonGroup />
+        </div>
+      )}
 
- { id == 3 &&(    <div className={styles['container3']}>
+      {id == 3 && (<div className={styles['container3']}>
         <div className={styles['frame20']}>
           <MoreTimeIcon />
           <span>{hours} Hora</span>
@@ -263,14 +263,14 @@ console.log(id)
       <div className={styles.tel}>
         <PhoneOutlined />
         <input maxLength={15} placeholder='Telefone' value={tel} type={'text'} onChange={(e) => handleTel(e.target.value)} />
-     
+
       </div>
 
       <div className={styles.pay}>
         <Image width={24} height={24} alt='' src={payIcon} />
         <span>Pagamento após o serviço</span>
-        <input  maxLength={15} placeholder='Telefone' value={tel} type={'radio'} onChange={(e) => handleTel(e.target.value)} />
-     
+        <input maxLength={15} placeholder='Telefone' value={tel} type={'radio'} onChange={(e) => handleTel(e.target.value)} />
+
       </div>
 
 

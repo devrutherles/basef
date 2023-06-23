@@ -33,7 +33,7 @@ export default function Tables({ handleService , app , handleApp }) {
         </label>
         <input onChange={(e) => handleStep(e.target.id)} type="radio" id="3" name="tabs" />
         <label className={styles.tab} htmlFor="3">
-<Image width={40} height={40} alt="" src={require('../../images/avatar.svg')} />
+<Image  alt="" src={require('../../images/avatar.svg')} />
 
           <p>Perfil</p>
         </label>

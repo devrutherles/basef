@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import cn from "classnames";
 import styles from "./SignIn.module.sass";
 import { loginUsingGoogle } from "../../service/auth";
+import Image from "@/components/Imagem";
 
 const Google = () => {
   return (
@@ -9,9 +10,9 @@ const Google = () => {
       <button
         style={{ marginTop: 3 }}
         onClick={() => loginUsingGoogle()}
-        className={cn("button-stroke", styles.button)}
+        className={cn("button-stroke")}
       >
-        <img src="/images/content/google.svg" alt="Google" />
+        <Image src={require('../../../public/images/content/google.svg')} alt="Google" />
         Google
       </button>
     </div>

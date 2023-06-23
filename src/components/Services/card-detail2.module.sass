@@ -3,38 +3,35 @@
 .card_details
   border-radius: 16px
   background: #FFFFFF
-  border: 1px solid #F5F5F5
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.08)
-  border-radius: 16px
+
+  
+  gap: 10px
+  
+  
   height: auto
   width: 100%
   display: flex
   flex-direction: column
   align-self: center
-  
-  padding: 10px 5px 10px 5px
 
-.container_details
-  display: flex
-  flex-direction: column
 
-  gap: 10px
-  justify-content: center
 
 .row_details
   display: flex
   flex-direction: row
   width: 100%
   padding: 5px 5px 4px 5px
+  gap: 3%
 
   border: 1px solid $n3
   align-items: center
   
   border-radius: 10px
-  justify-content: space-between
+  justify-content: flex-start
+  min-height: 40px
   height: auto
   svg
-    font-size: 22px
+    font-size: 18px
 
   input[type='radio']
     display: none
@@ -76,15 +73,15 @@
     background-color: #1d272f
     color: $n1
 
-  input[type='number']
+  input[type='text']
     display: flex
-    border: 1px solid $n3
+   
     border-radius: 10px
-    padding: 2px 8px 2px 8px
-    margin-inline: 3%
-    width: 30%
+    
+   
+    width: 100%
     font-size: 14px
-    text-align: center
+    text-align: left
     font-weight: 400
     color: #606060
     font-family: "IBM Plex Sans"
@@ -131,10 +128,12 @@
   backdrop-filter: blur(0.5px)
   padding: 5%
   width: 100%
+  
 
   button
     border-radius: 10px
     transition: 0.25s all linear
+
 
     &:active
       background-color: $n4
